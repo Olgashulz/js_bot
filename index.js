@@ -2788,4 +2788,156 @@
 // price - цена автомобиля.
 // Функция Car должна создавать объект с одноимёнными свойствами brand, 
 // model и price, значениями которых должны быть переданные аргументы во 
-// время её вызова с оператором new.
+// время её вызова с оператором 
+
+// const Car = function (brand, model, prise) {
+//   this.brand = brand;
+//   this.model = model;
+//   this.prise = prise;
+// }
+
+// console.log(new Car('Audi', 'Q3', 36000));
+// // получится объект { brand: 'Audi', model: 'Q3', price: 36000 }.
+// console.log(new Car('BMW', 'X5', 58900));
+// // получится объект { brand: 'BMW', model: 'X5', price: 58900 }.
+// console.log(new Car('Nissan', 'Murano', 31700));
+// // получится объект { brand: 'Nissan', model: 'Murano', price: 31700 }.
+//------------------------------------------------------------------------------------
+
+// 5/19
+// Добавь в свойство prototype функции - конструктора Car два метода:
+// getPrice() - возвращает значение свойства price из объекта который
+// его будет вызывать.
+// changePrice(newPrice) - обновляет значение свойства price у объекта
+// который его будет вызывать на newPrice.
+
+// function Car({ brand, model, price }) {
+//   this.brand = brand;
+//   this.model = model;
+//   this.price = price;
+// }
+
+// Car.prototype.getPrice = function() {
+//   return this.price;
+// };
+
+// Car.prototype.changePrice = function(newPrice){
+//   return this.price = newPrice;
+// }
+//------------------------------------------------------------------------------------
+
+// 6/19
+// С помощью Function Declaration напиши функцию - конструктор Storage,
+// которая будет создавать объекты для управления складом товаров.Функция
+// ожидает только один аргумент - начальный массив товаров, который
+// записывается на создаваемый объект в свойство items.
+
+// Добавь методы на прототип:
+
+// getItems() - возвращает массив текущих товаров в свойстве items объекта,
+//   который вызывает этот метод.
+//   addItem(newItem) - принимает новый товар newItem и добавляет его в массив
+// товаров в свойстве items объекта, который вызывает этот метод.
+//   removeItem(item) - принимает товар item и удаляет его из массива товаров
+// в свойстве items объекта, который вызывает этот метод.
+
+// function Storage(items) {
+//   this.items = items;
+// }
+
+// Storage.prototype.getItems = function getItems() {
+//   return this.items;
+// }
+
+// Storage.prototype.addItem = function addItem(newItem) {
+//   this.items.push(newItem);
+// }
+
+// Storage.prototype.removeItem = function removeItem(item) {   
+//   for (let i = 0; i < this.items.length; i += 1){
+//     if (this.items[i] === item) {
+//       this.items.splice( i , 1)
+//     }
+//   }
+// }
+
+// const storage = new Storage(['Нанитоиды', 'Пролонгер', 'Антигравитатор']);
+// console.log(storage);
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор"]
+// storage.addItem('Дроид');
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"]
+// storage.removeItem('Пролонгер');
+// console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Дроид"]
+//------------------------------------------------------------------------------------
+
+// 7/19
+
+// С помощью Function Declaration напиши функцию - конструктор StringBuilder,
+//   которая принимает один параметр baseValue - произвольную строку, которая
+// записывается на создаваемый объект в свойство value.
+
+// Добавь методы на прототип:
+// getValue() - возвращает текущее значение свойства value.
+  
+// padEnd(str) - получает парметр str(строку) и добавляет её в конец значения
+// свойства value объекта, который вызывает этот метод.
+  
+// padStart(str) - получает парметр str(строку) и добавляет её в начало значения
+// свойства value объекта, который вызывает этот метод.
+  
+// padBoth(str) - получает парметр str(строку) и добавляет её в начало и в конец
+// значения свойства value объекта, который вызывает этот метод.
+
+function StringBuilder(baseValue) {
+  this.value = baseValue;
+}
+
+StringBuilder.prototype.getValue = function getValue() {
+  return this.value;
+}
+
+StringBuilder.prototype.padEnd = function padEnd(str) {
+  this.value = this.value + str;
+}
+
+StringBuilder.prototype.padStart = function padStart(str) {
+  this.value = str + this.value;
+}
+
+StringBuilder.prototype.padBoth = function padBoth(str) {
+  this.value = str + this.value + str;
+}
+
+
+const builder = new StringBuilder('.');
+console.log(builder.getValue()); // '.'
+builder.padStart('^');
+console.log(builder.getValue()); // '^.'
+builder.padEnd('^');
+console.log(builder.getValue()); // '^.^'
+builder.padBoth('=');
+console.log(builder.getValue()); // '=^.^='
+//------------------------------------------------------------------------------------
+
+// 8/19
+// Используя ключевое слово class объяви класс Car с пустым телом.
+
+// class Car {
+  
+// }
+
+// console.log(new Car());
+//------------------------------------------------------------------------------------
+
+// 9/19
+
+
+
+
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
