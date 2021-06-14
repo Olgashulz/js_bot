@@ -3357,64 +3357,84 @@
 // blacklistedEmails и возвращать true или false.
 
 
-class User {
-  email;
+// class User {
+//   email;
 
-  constructor(email) {
-    this.email = email;
-  }
+//   constructor(email) {
+//     this.email = email;
+//   }
 
-  get email() {
-    return this.email;
-  }
+//   get email() {
+//     return this.email;
+//   }
 
-  set email(newEmail) {
-    this.email = newEmail;
-  }
-}
-class Admin extends User {
-  // Пиши код ниже этой строки  
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+// class Admin extends User {
+//   // Пиши код ниже этой строки  
 
-  static AccessLevel = {
-    BASIC: 'basic',
-    SUPERUSER: 'superuser'
-  };
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser'
+//   };
 
-  accessLevel;
-  blacklistedEmails = [];
+//   accessLevel;
+//   blacklistedEmails = [];
 
-  constructor({ email, accessLevel }) {
-    super(email);
-    this.accessLevel = accessLevel;
-  }
+//   constructor({ email, accessLevel }) {
+//     super(email);
+//     this.accessLevel = accessLevel;
+//   }
 
-  blacklist(email) {
-    //console.log(this.blacklistedEmails);
-    return this.blacklistedEmails.push(email);
-  }
+//   blacklist(email) {
+//     //console.log(this.blacklistedEmails);
+//     return this.blacklistedEmails.push(email);
+//   }
 
-  isBlacklisted(email) {
-   return this.blacklistedEmails.includes(email)
-  }
+//   isBlacklisted(email) {
+//    return this.blacklistedEmails.includes(email)
+//   }
 
-}
+// }
 
-const mango = new Admin({
-  email: 'mango@mail.com',
-  accessLevel: Admin.AccessLevel.SUPERUSER
-});
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER
+// });
 
-console.log(mango.email); // mango@mail.com
-console.log(mango.accessLevel); // superuser
-mango.blacklist('poly@mail.com');
-console.log(mango.blacklistedEmails); // 'poly@mail.com'
-console.log(mango.isBlacklisted('mango@mail.com')); //  false
-console.log(mango.isBlacklisted('poly@mail.com')); // true 
-
-
-
-
+// console.log(mango.email); // mango@mail.com
+// console.log(mango.accessLevel); // superuser
+// mango.blacklist('poly@mail.com');
+// console.log(mango.blacklistedEmails); // 'poly@mail.com'
+// console.log(mango.isBlacklisted('mango@mail.com')); //  false
+// console.log(mango.isBlacklisted('poly@mail.com')); // true 
 //------------------------------------------------------------------------------------
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Модуль 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// 1/44
+// Функция calculateTotalPrice(orderedItems) принимает один параметр
+// orderedItems - массив чисел, и рассчитывает общую сумму его элементов,
+//   которая сохраняется в переменной totalPrice и возвращается как результат
+// работы функции.
+// Выполни рефакторинг функции так, чтобы вместо цикла for она использовала 
+// метод forEach.
+
+function calculateTotalPrice(orderedItems) {
+  let totalPrice = 0;
+  // Пиши код ниже этой строки
+
+  for (let i = 0; i < orderedItems.length; i += 1) {
+    totalPrice += orderedItems[i];
+  }
+
+  // Пиши код выше этой строки
+  return totalPrice;
+}
+//---------------------------------------------------
+
+
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
