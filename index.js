@@ -2888,35 +2888,35 @@
 // padBoth(str) - получает парметр str(строку) и добавляет её в начало и в конец
 // значения свойства value объекта, который вызывает этот метод.
 
-function StringBuilder(baseValue) {
-  this.value = baseValue;
-}
+// function StringBuilder(baseValue) {
+//   this.value = baseValue;
+// }
 
-StringBuilder.prototype.getValue = function getValue() {
-  return this.value;
-}
+// StringBuilder.prototype.getValue = function getValue() {
+//   return this.value;
+// }
 
-StringBuilder.prototype.padEnd = function padEnd(str) {
-  this.value = this.value + str;
-}
+// StringBuilder.prototype.padEnd = function padEnd(str) {
+//   this.value = this.value + str;
+// }
 
-StringBuilder.prototype.padStart = function padStart(str) {
-  this.value = str + this.value;
-}
+// StringBuilder.prototype.padStart = function padStart(str) {
+//   this.value = str + this.value;
+// }
 
-StringBuilder.prototype.padBoth = function padBoth(str) {
-  this.value = str + this.value + str;
-}
+// StringBuilder.prototype.padBoth = function padBoth(str) {
+//   this.value = str + this.value + str;
+// }
 
 
-const builder = new StringBuilder('.');
-console.log(builder.getValue()); // '.'
-builder.padStart('^');
-console.log(builder.getValue()); // '^.'
-builder.padEnd('^');
-console.log(builder.getValue()); // '^.^'
-builder.padBoth('=');
-console.log(builder.getValue()); // '=^.^='
+// const builder = new StringBuilder('.');
+// console.log(builder.getValue()); // '.'
+// builder.padStart('^');
+// console.log(builder.getValue()); // '^.'
+// builder.padEnd('^');
+// console.log(builder.getValue()); // '^.^'
+// builder.padBoth('=');
+// console.log(builder.getValue()); // '=^.^='
 //------------------------------------------------------------------------------------
 
 // 8/19
@@ -2930,11 +2930,490 @@ console.log(builder.getValue()); // '=^.^='
 //------------------------------------------------------------------------------------
 
 // 9/19
+// Выполни рефакторинг кода, заменив функцию - конструктор Car на класс с методом -
+//   конструктором, принимающим объект.
 
+// class Car {
 
+//   constructor({ brand, model, price }) {
+//     this.brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+// }
 
+// console.log(new Car({ brand: 'Audi', model: 'Q3', price: 36000 }));
+// // получится объект { brand: 'Audi', model: 'Q3', price: 36000 }.
+// console.log(new Car({ brand: 'BMW', model: 'X5', price: 58900 }));
+// // получится объект { brand: 'BMW', model: 'X5', price: 58900 }.
+// console.log(new Car({ brand: 'Nissan', model: 'Murano', price: 31700 }));
+// // получится объект { brand: 'Nissan', model: 'Murano', price: 31700 }.
+//------------------------------------------------------------------------------------
+
+// 10/19
+// Добавь классу Car две метода.
+
+//   getPrice() - возвращает значение свойства price из объекта который его
+// будет вызывать.
+//   changePrice(newPrice) - обновляет значение свойства price у объекта
+// который его будет вызывать на newPrice.
+
+// class Car {
+//   constructor({ brand, model, price }) {
+//     this.brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+
+//   getPrice() {
+//     return this.price;
+//   }
+
+//   changePrice(newPrice) {
+//     this.price = newPrice;
+//   }
+// }
+
+// console.log(Car.prototype.hasOwnProperty('getPrice')); // возвращает true.
+// console.log(Car.prototype.hasOwnProperty('changePrice')); // возвращает true.
+
+// console.log(new Car({ brand: 'Audi', model: 'Q3', price: 36000 }))
+//   //, вызов метода getPrice() вернет число 36000.
+// new Car({ brand: 'Audi', model: 'Q3', price: 36000 });
+// //вызов метода changePrice(35000) и последующем вызове getPrice() вернет число 35000.
+//------------------------------------------------------------------------------------
+
+// 11/19
+// Выполни рефакторинг класса Car так, чтобы свойство brand было приватным и добавь
+// два метода для публичного интерфейса, для чтения и изменения этого свойства.
+
+//   getBrand() - возвращает значение приватного свойства brand.
+//   changeBrand(newBrand) - изменяет значение приватного свойства brand на newBrand.
+
+// class Car {
+//   #brand;
+
+//   constructor({ brand, model, price }) {
+//     this.#brand = brand;
+//     this.model = model;
+//     this.price = price;
+//   }
+
+//   getBrand() {
+//     return this.#brand;
+//   }
+
+//   changeBrand(newBrand) {
+//     return this.#brand = newBrand;
+//   }
+// }
+
+// const car1 = new Car({ brand: 'Audi', model: 'Q3', price: 36000 })
+// console.log(car1);
+// console.log(car1.getBrand());
+// car1.changeBrand("Honda");
+// console.log(car1);
+
+// console.log(new Car({ brand: 'Audi', model: 'Q3', price: 36000 }));
+// // получится объект { model: 'Q3', price: 36000 }.
+// console.log(new Car({ brand: 'BMW', model: 'X5', price: 58900 }));
+// // получится объект { model: 'X5', price: 58900 }.
+// console.log(new Car({ brand: 'Nissan', model: 'Murano', price: 31700 }));
+// // получится объект { model: 'Murano', price: 31700 }.
+// //console.log(getBrand()); //возвращает значение приватного свойства brand.
+// //changeBrand('Honda');//изменяет значение приватного свойства brand на 'Honda'.
 
 //------------------------------------------------------------------------------------
+// 12/19
+// Выполни рефакторинг заменив функцию - конструктор Storage на класс с методами.
+// Сделай так, чтобы свойство items было приватным.
+
+// function Storage(items) {
+//   this.items = items;
+// }
+
+// Storage.prototype.getItems = function () {
+//   return this.items;
+// };
+
+// Storage.prototype.addItem = function (newItem) {
+//   this.items.push(newItem);
+// };
+
+// Storage.prototype.removeItem = function (item) {
+//   const itemIndex = this.items.indexOf(item);
+//   this.items.splice(itemIndex, 1);
+// };
+
+//-----------------------------------------------
+
+// class Storage {
+//   #items;
+  
+//   constructor(items) {
+    
+//     this.#items = items;
+//   }
+
+//    getItems() {
+//     return this.#items;
+//   }
+
+//   addItem(newItem) {
+//     return this.#items.push(newItem);    
+//   }
+
+//   removeItem(item) {
+//     this.#items.splice(this.#items.indexOf(item), 1);
+//   }
+// }
+
+// const storage = new Storage(["Нанитоиды", "Пролонгер", "Антигравитатор"]);
+// console.log(storage);
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор"]
+// storage.addItem("Дроид");
+// console.log(storage.getItems()); // ["Нанитоиды", "Пролонгер", "Антигравитатор", "Дроид"]
+// storage.removeItem("Пролонгер");
+// console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Дроид"]
+//------------------------------------------------------------------------------------
+
+// 13/19
+// Выполни рефакторинг заменив функцию - конструктор StringBuilder на класс с
+// методами.Сделай так, чтобы свойство value было приватным.
+
+// function StringBuilder(baseValue) {
+//   this.value = baseValue;
+// }
+
+// StringBuilder.prototype.getValue = function () {
+//   return this.value;
+// };
+
+// StringBuilder.prototype.padEnd = function (str) {
+//   this.value += str;
+// };
+
+// StringBuilder.prototype.padStart = function (str) {
+//   this.value = str + this.value;
+// };
+
+// StringBuilder.prototype.padBoth = function (str) {
+//   this.padStart(str);
+//   this.padEnd(str);
+// };
+// --------------------------------------------------
+
+// class StringBuilder {
+//   #value;
+
+//   constructor(value) {
+//     this.#value = value;
+//   }
+
+//   getValue() {
+//     return this.#value;
+//   }
+
+//   padEnd(str) {
+//     this.#value += str;    
+//   }
+
+//   padStart(str) {
+//     this.#value = str + this.#value;
+//   }
+
+//   padBoth(str) {
+//     this.padStart(str);
+//     this.padEnd(str);
+//   }
+// }
+
+
+
+// // Пиши код выше этой строки
+// const builder = new StringBuilder('.');
+// console.log(builder.getValue()); // '.'
+// builder.padStart('^');
+// console.log(builder.getValue()); // '^.'
+// builder.padEnd('^');
+// console.log(builder.getValue()); // '^.^'
+// builder.padBoth('=');
+// console.log(builder.getValue()); // '=^.^='
+
+//------------------------------------------------------------------------------------
+// 14/19
+// Выполни рефакторинг класса Car.Сделай свойства model и price приватными,
+//   также как #brand.Стандартизируй публичный интерфейс класса заменив уже
+// объявленные методы на геттеры и сеттеры brand, model и price для
+// взаимодействия с приватными свойствами.
+
+// class Car {
+//   #model;
+//   #price;
+//   #brand;
+
+//   constructor({ brand, model, price }) {
+//     this.#brand = brand;
+//     this.#model = model;
+//     this.#price = price;
+//   }
+
+//   get brand() {
+//     return this.#brand;
+//   }
+
+//   set brand(newBrand) {
+//     this.#brand = newBrand;
+//   }
+
+//   get model() {
+//     return this.#model;
+//   }
+
+//   set model(newModel) {
+//     this.#model = newModel;
+//   }
+
+//   get price() {
+//     return this.#price;
+//   }
+
+//   set price(newPrice) {
+//     this.#price = newPrice;
+//   }
+// }
+
+//------------------------------------------------------------------------------------
+// 15/19
+// Выполни рефакторинг класса Car.Добавь публичное статическое свойство
+// MAX_PRICE со значением 50000 - максимально допустимая цена автомобиля.
+
+// Добавь сеттеру price проверку передаваемого значения параметра newPrice.
+// Если оно больше чем MAX_PRICE, сеттер ничего не делает, а если меньше или
+// равно, то перезаписывает цену автомобиля.
+
+// class Car {
+
+//   static MAX_PRICE = 50000;
+//   #price;
+
+//   constructor({ price }) {
+//     this.#price = price;
+    
+//   }
+
+//   get price() {
+//     return this.#price;
+//   }
+
+//   set price(newPrice) {
+
+//      Car.MAX_PRICE > newPrice ? this.#price = newPrice : this.#price;
+    
+//   }
+
+// }
+
+// const audi = new Car({ price: 35000 });
+// console.log(audi.price); // 35000
+
+// audi.price = 49000;
+// console.log(audi.price); // 49000
+
+// audi.price = 51000;
+// console.log(audi.price); // 49000
+//------------------------------------------------------------------------------------
+// 16/19
+// Добавь классу Car публичный статический метод checkPrice(price), принимающий
+// цену автомобиля.Метод должен сравнить значения параметра price и приватного
+// статического свойства MAX_PRICE.
+
+// Если цена автомобиля превышает максимальную, метод должен вернуть строку
+// 'Внимание! Цена превышает допустимую.'.
+// В противном случае метод должен вернуть строку 'Всё хорошо, цена в порядке.'.
+// Под объявлением класса мы добавили инициализацию экземпляра и вызовы методов,
+//   чтобы показать как будет использоваться метод checkPrice(price).
+
+// class Car {
+//   static #MAX_PRICE = 50000;
+//   static checkPrice(price) {
+
+//     return Car.#MAX_PRICE > price ? 'Всё хорошо, цена в порядке.' : 'Внимание! Цена превышает допустимую.';
+
+
+//     // if (Car.#MAX_PRICE > price) {
+//     //   return 'Всё хорошо, цена в порядке.'
+//     // }
+//     // return 'Внимание! Цена превышает допустимую.'
+//   }
+
+//   constructor({ price }) {
+//     this.price = price;
+//   }
+// }
+
+// const audi = new Car({ price: 36000 });
+// console.log(audi);
+
+// const bmw = new Car({ price: 64000 });
+// console.log(bmw);
+
+// console.log(Car.checkPrice(audi.price)); // Всё хорошо, цена в порядке.
+// console.log(Car.checkPrice(bmw.price)); // Внимание! Цена превышает допустимую.
+//------------------------------------------------------------------------------------
+// 17/19
+// В приложении нужен администратор с возможностью добавлять почты пользователей в чёрный список.
+
+// Объяви класс Admin, который наследует от класса User.
+// Добавь классу Admin публичное статическое свойство AccessLevel(уровень доступа),
+//   значение которого это объект { BASIC: 'basic', SUPERUSER: 'superuser' }.
+
+// class User {
+//   email;
+
+//   constructor(email) {
+//     this.email = email;
+//   }
+
+//   get email() {
+//     return this.email;
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+
+// class Admin extends User {
+//   static AccessLevel = { BASIC: 'basic', SUPERUSER: 'superuser' };
+// }
+
+// console.log(Admin.AccessLevel.BASIC); //возвращает строку 'basic'.
+// console.log(Admin.AccessLevel.SUPERUSER); //возвращает строку 'superuser'.
+//------------------------------------------------------------------------------------
+//18/19
+
+// Добавь классу Admin метод constructor, который принимает один параметр - объект
+// настроек с двумя свойствами email и accessLevel.Добавь классу Admin публичное
+// свойство accessLevel, значение которого будет передаваться при вызове конструктора.
+
+// Чтобы показать как будет использоваться класс Admin, мы добавили инициализацию
+// экземпляра под объявлением класса.
+
+// class User {
+//   email;
+
+//   constructor(email) {
+//     this.email = email;
+//   }
+
+//   get email() {
+//     return this.email;
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+
+
+// class Admin extends User {
+//   // Пиши код ниже этой строки
+//   accessLevel;
+
+//   constructor({ email, accessLevel }) {
+//     super(email);
+//     this.accessLevel = accessLevel;
+//     // Admin.AccessLevel = accessLevel;
+//   }
+
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser'
+//   };
+
+//   // Пиши код выше этой строки
+// }
+
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER
+// });
+
+// console.log(mango.email); // mango@mail.com
+// console.log(mango.accessLevel); // superuser
+
+//------------------------------------------------------------------------------------
+// 19/19
+// Добавь классу Admin следующие свойства и методы.
+
+// Публичное свойство blacklistedEmails для хранения чёрного списка почтовых
+// адресов пользователей.Значение по умолчанию это пустой массив.
+// Публичный метод blacklist(email) для добавления почты в чёрный список.Метод
+// должен добавлять значение параметра email в массив хранящийся в свойстве
+// blacklistedEmails.
+// Публичный метод isBlacklisted(email) для проверки почты в чёрном списке.Метод
+// должен проверять наличие значения параметра email в массиве хранящемся в свойстве
+// blacklistedEmails и возвращать true или false.
+
+
+class User {
+  email;
+
+  constructor(email) {
+    this.email = email;
+  }
+
+  get email() {
+    return this.email;
+  }
+
+  set email(newEmail) {
+    this.email = newEmail;
+  }
+}
+class Admin extends User {
+  // Пиши код ниже этой строки  
+
+  static AccessLevel = {
+    BASIC: 'basic',
+    SUPERUSER: 'superuser'
+  };
+
+  accessLevel;
+  blacklistedEmails = [];
+
+  constructor({ email, accessLevel }) {
+    super(email);
+    this.accessLevel = accessLevel;
+  }
+
+  blacklist(email) {
+    //console.log(this.blacklistedEmails);
+    return this.blacklistedEmails.push(email);
+  }
+
+  isBlacklisted(email) {
+   return this.blacklistedEmails.includes(email)
+  }
+
+}
+
+const mango = new Admin({
+  email: 'mango@mail.com',
+  accessLevel: Admin.AccessLevel.SUPERUSER
+});
+
+console.log(mango.email); // mango@mail.com
+console.log(mango.accessLevel); // superuser
+mango.blacklist('poly@mail.com');
+console.log(mango.blacklistedEmails); // 'poly@mail.com'
+console.log(mango.isBlacklisted('mango@mail.com')); //  false
+console.log(mango.isBlacklisted('poly@mail.com')); // true 
+
+
+
+
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
