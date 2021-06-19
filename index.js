@@ -2420,7 +2420,7 @@
 //------------------------------------------------------------------------------------
 
 //  3/10
-// Дополни второй вызов функции makePizza(pizzaName, callback), передав 
+// Дополни второй console.log(makePizza(pizzaName, callback), передав 
 // вторым аргументом инлайн колбэк-функцию eatPizza(pizzaName), которая 
 // логирует строку 'Едим пиццу <имя пиццы>'.
 
@@ -3421,18 +3421,822 @@
 // Выполни рефакторинг функции так, чтобы вместо цикла for она использовала 
 // метод forEach.
 
-function calculateTotalPrice(orderedItems) {
-  let totalPrice = 0;
-  // Пиши код ниже этой строки
+// function calculateTotalPrice(orderedItems) {
+//   let totalPrice = 0;
+//   // Пиши код ниже этой строки
 
-  for (let i = 0; i < orderedItems.length; i += 1) {
-    totalPrice += orderedItems[i];
-  }
+//   for (let i = 0; i < orderedItems.length; i += 1) {
+//     totalPrice += orderedItems[i];
+//   }
 
-  // Пиши код выше этой строки
-  return totalPrice;
-}
-//---------------------------------------------------
+//------------------------------------------
+
+// function calculateTotalPrice(orderedItems) {
+//   let totalPrice = 0;
+
+//   // orderedItems.forEach(function (item, index, array) {
+//   //   // console.log("Items,", item);
+//   //   // console.log("Index,", index);
+//   //   // console.log('Array,', array);
+//   //   totalPrice += item;
+//   // });
+
+//   orderedItems.forEach(item => {
+//     totalPrice += item;    
+//   });
+
+//   return totalPrice;
+// }
+// console.log(calculateTotalPrice([12, 85, 37, 4]));
+// // возвращает 138.
+// console.log(calculateTotalPrice([164, 48, 291]));
+// // возвращает 503.
+// console.log(calculateTotalPrice([412, 371, 94, 63, 176]));
+// // возвращает 1116.
+//------------------------------------------------------------------------------------
+// 2/44
+// Функция filterArray(numbers, value) принимает массив чисел numbers и
+// возвращает новый массив, в котором будут только те элементы оригинального
+// массива, которые больше чем значение параметра value.
+
+// Выполни рефакторинг функции так, чтобы вместо цикла for она использовала 
+// метод forEach.
+
+// function filterArray(numbers, value) {
+//   const filteredNumbers = [];
+//   // Пиши код ниже этой строки
+
+//   for (let i = 0; i < numbers.length; i += 1) {
+//     if (numbers[i] > value) {
+//       filteredNumbers.push(numbers[i]);
+//     }
+//   }
+
+//   // Пиши код выше этой строки
+//   return filteredNumbers;
+// }
+
+//--------------------------------------------------
+// function filterArray(numbers, value) {
+//   const filteredNumbers = [];
+
+//   // for (let i = 0; i < numbers.length; i += 1) {
+//   //   if (numbers[i] > value) {
+//   //     filteredNumbers.push(numbers[i]);
+//   //   }
+//   // }
+
+//   numbers.forEach(number => {
+//     number > value ? filteredNumbers.push(number):filteredNumbers    
+//   });
+
+// обычная ф-ция
+  // // numbers.forEach(number => {
+  // //   if (number > value) {
+  // //     filteredNumbers.push(number);
+  // //    }
+  // //  });
+
+//   return filteredNumbers;
+// }
+
+// console.log(filterArray([1, 2, 3, 4, 5], 3)); // возвращает[4, 5].
+// console.log(filterArray([1, 2, 3, 4, 5], 4)); // возвращает[5].
+// console.log(filterArray([1, 2, 3, 4, 5], 5)); // возвращает[].
+// console.log(filterArray([12, 24, 8, 41, 76], 38)); // возвращает[41, 76].
+// console.log(filterArray([12, 24, 8, 41, 76], 20)); // возвращает[24, 41, 76].
+//------------------------------------------------------------------------------------
+// 3/44
+// Функция getCommonElements(firstArray, secondArray) принимает два массива
+// произвольной длины в параметры firstArray и secondArray, и возвращает
+// новый массив их общих элементов, то есть тех которые есть в обоих массивах.
+
+// Выполни рефакторинг функции так, чтобы вместо цикла for она использовала 
+// метод forEach.
+// function getCommonElements(firstArray, secondArray) {
+//   const commonElements = [];
+//   // Пиши код ниже этой строки
+
+//   for (let i = 0; i < firstArray.length; i += 1) {
+//     if (secondArray.includes(firstArray[i])) {
+//       commonElements.push(firstArray[i]);
+//     }
+//   }
+
+//   return commonElements;
+//   // Пиши код выше этой строки
+// }
+//-----------------------------------------------------
+// function getCommonElements(firstArray, secondArray) {
+//   const commonElements = [];
+
+//   // firstArray.forEach(element => {
+//   //   if (secondArray.includes(element)) {
+//   //     commonElements.push(element);
+//   //   }
+//   // });
+
+//   firstArray.forEach(element => {
+//     secondArray.includes(element) ? commonElements.push(element) : commonElements;
+//   });
+  
+//   return commonElements;
+// }
+
+// console.log(getCommonElements([1, 2, 3], [2, 4])); // возвращает[2].
+// console.log(getCommonElements([1, 2, 3], [2, 1, 17, 19])); // возвращает[1, 2].
+// console.log(getCommonElements([24, 12, 27, 3], [12, 8, 3, 36, 27])); // возвращает[12, 27, 3].
+// console.log(getCommonElements([10, 20, 30, 40], [4, 30, 17, 10, 40])); // возвращает[10, 30, 40].
+// console.log(getCommonElements([1, 2, 3], [10, 20, 30])); // возвращает[]
+
+//------------------------------------------------------------------------------------
+// 4/44
+// Выполни рефакторинг функции calculateTotalPrice() так, чтобы она была объявлена как стрелочная.
+
+// const calculateTotalPrice = (quantity, pricePerItem)=> {
+//   // Пиши код выше этой строки
+//   return quantity * pricePerItem;
+// }
+
+// console.log(calculateTotalPrice(5, 100)); // возвращает 500.
+// console.log(calculateTotalPrice(8, 60)); // возвращает 480.
+// console.log(calculateTotalPrice(3, 400)); // возвращает 1200.
+//------------------------------------------------------------------------------------
+// 5/44
+// Выполни рефакторинг функции calculateTotalPrice() так, чтобы она использовала
+// неявный возврат.
+
+// const calculateTotalPrice = (quantity, pricePerItem) => {
+//   return quantity * pricePerItem;
+// };
+//---------------------------------
+// const calculateTotalPrice = (quantity, pricePerItem) => 
+//   quantity * pricePerItem;
+
+//   console.log(calculateTotalPrice(5, 100)); // возвращает 500.
+//   console.log(calculateTotalPrice(8, 60)); // возвращает 480.
+//   console.log(calculateTotalPrice(3, 400)); // возвращает 1200.
+//------------------------------------------------------------------------------------
+// 6/44
+// Выполни рефакторинг функции calculateTotalPrice(orderedItems) заменив её объявление
+// на стрелочную функцию.Замени коллбек - функцию передаваемую в метод forEach()
+// на стрелочную функцию.
+
+// function calculateTotalPrice(orderedItems) {
+//   let totalPrice = 0;
+
+//   orderedItems.forEach(function (item) {
+//     totalPrice += item;
+//   });
+
+//   return totalPrice;
+// }
+//-----------------------------------------
+// const calculateTotalPrice = (orderedItems)=> {
+//   let totalPrice = 0;
+
+//   orderedItems.forEach(item => 
+//     totalPrice += item
+//   );
+
+//   return totalPrice;
+// }
+
+// console.log(calculateTotalPrice([12, 85, 37, 4]));// возвращает 138.
+// console.log(calculateTotalPrice([164, 48, 291]));// возвращает 503.
+// console.log(calculateTotalPrice([412, 371, 94, 63, 176]));// возвращает 1116.
+
+//------------------------------------------------------------------------------------
+//7/44
+// Замени объявление функции filterArray() и коллбек для метода forEach() на
+// стрелочные функции.
+
+// const filterArray = (numbers, value) => {
+//   const filteredNumbers = [];
+
+//   numbers.forEach(number  => {
+//     if (number > value) {
+//       filteredNumbers.push(number);
+//     }
+//   });
+
+//  return filteredNumbers;
+// }
+
+// console.log(filterArray([1, 2, 3, 4, 5], 3));// возвращает[4, 5].
+// console.log(filterArray([1, 2, 3, 4, 5], 4));// возвращает[5].
+// console.log(filterArray([1, 2, 3, 4, 5], 5));// возвращает[].
+// console.log(filterArray([12, 24, 8, 41, 76], 38));// возвращает[41, 76].
+// console.log(filterArray([12, 24, 8, 41, 76], 20));// возвращает[24, 41, 76].
+//------------------------------------------------------------------------------------
+
+//8/44
+// Замени объявление функции getCommonElements() и коллбек для метода forEach()
+// на стрелочные функции.
+
+// const getCommonElements = (firstArray, secondArray) => {
+//   const commonElements = [];
+
+//   firstArray.forEach(element => {
+//     if (secondArray.includes(element)) {
+//       commonElements.push(element);
+//     }
+//   });
+
+//   // Пиши код выше этой строки
+//   return commonElements;
+// }
+
+// console.log(getCommonElements([1, 2, 3], [2, 4])); // возвращает[2].
+// console.log(getCommonElements([1, 2, 3], [2, 1, 17, 19])); // возвращает[1, 2].
+// console.log(getCommonElements([24, 12, 27, 3], [12, 8, 3, 36, 27])); // возвращает[12, 27, 3].
+// console.log(getCommonElements([10, 20, 30, 40], [4, 30, 17, 10, 40])); // возвращает[10, 30, 40].
+// console.log(getCommonElements([1, 2, 3], [10, 20, 30])); // возвращает[].
+//------------------------------------------------------------------------------------
+//9/44
+// Функция changeEven(numbers, value) принимает массив чисел numbers и обновляет
+// каждый элемент, значение которого это чётное число, добавляя к нему значение
+// параметра value.
+
+// Выполни рефакторинг функции так, чтобы она стала чистой - не изменяла массив
+// чисел numbers, а создавала, наполняла и возвращала новый массив с обновлёнными
+// значениями.
+
+// function changeEven(numbers, value) {
+//   // Пиши код ниже этой строки
+
+//   const newArr = [];
+
+//   numbers.forEach(number =>
+//     number % 2 === 0 ? newArr.push(number + value) : newArr.push(number)
+    
+//     // if (number % 2 === 0) {
+//     //   newArr.push(number + value);
+//     // } else {
+//     //   ;
+//     // }
+
+   
+//   )
+
+//   return newArr;
+// }
+
+// console.log(changeEven([1, 2, 3, 4, 5], 10)); 
+// // возвращает новый массив [1, 12, 3, 14, 5].
+// console.log(changeEven([2, 8, 3, 7, 4, 6], 10)); 
+// // возвращает новый массив [12, 18, 3, 7, 14, 16].
+// console.log(changeEven([17, 24, 68, 31, 42], 100)); 
+// // возвращает новый массив [17, 124, 168, 31, 142].
+// console.log(changeEven([44, 13, 81, 92, 36, 54], 100)); 
+// // возвращает новый массив [144, 13, 81, 192, 136, 154].
+
+//10/44
+// Дополни код так, чтобы в переменной planetsLengths получился массив длин названий планет.
+// Обязательно используй метод map().
+
+// const planets = ['Земля', 'Марс', 'Венера', 'Юпитер'];
+// // Пиши код ниже этой строки
+// const planetsLengths = planets.map(planet => planet.length);
+  
+//   console.log(planets);
+
+//   console.log(planetsLengths); // это массив[5, 4, 6, 6].
+//------------------------------------------------------------------------------------
+// 11/44
+// Используя метод map() сделай так, чтобы в переменной titles получился массив названий
+// книг(свойство title) из всех объектов массива books.
+
+// const books = [
+//   { title: 'Последнее королевство', author: 'Бернард Корнуэлл', rating: 8.38 },
+//   { title: 'На берегу спокойных вод', author: 'Роберт Шекли', rating: 8.51 },
+//   { title: 'Сон смешного человека', author: 'Федор Достоевский', rating: 7.75 },
+//   { title: 'Красна как кровь', author: 'Ли Танит', rating: 7.94 },
+//   { title: 'Враг Божий', author: 'Бернард Корнуэлл', rating: 8.67 }
+// ];
+// // Пиши код ниже этой строки
+
+// const titles = books.map(book => book.title
+// // {
+// //   console.log(book);
+// //   console.log(book.title);
+// // }
+// );
+
+// console.log(titles);
+//------------------------------------------------------------------------------------
+//12 / 44
+// Используя метод flatMap() сделай так, чтобы в переменной genres получился массив всех
+// жанров книг(свойство genres) из массива книг books.
+
+// const books = [
+//   {
+//     title: 'Последнее королевство',
+//     author: 'Бернард Корнуэлл',
+//     genres: ['приключения', 'историческое']
+//   },
+//   {
+//     title: 'На берегу спокойных вод',
+//     author: 'Роберт Шекли',
+//     genres: ['фантастика']
+//   },
+//   {
+//     title: 'Красна как кровь',
+//     author: 'Ли Танит',
+//     genres: ['ужасы', 'мистика']
+//   }
+// ];
+// // Пиши код ниже этой строки
+
+// const genres = books.flatMap(book => book.genres);
+
+// console.log(genres);
+//------------------------------------------------------------------------------------
+//13/44
+// Этот массив объектов мы будем передавать в параметр users при
+// вызове функции из задания.
+
+// const users = 
+//   [
+//     {
+//       name: 'Moore Hensley',
+//       email: 'moorehensley@indexia.com',
+//       eyeColor: 'blue',
+//       friends: ['Sharron Pace'],
+//       isActive: false,
+//       balance: 2811,
+//       skills: ['ipsum', 'lorem'],
+//       gender: 'male',
+//       age: 37,
+//     },
+//     {
+//       name: 'Sharlene Bush',
+//       email: 'sharlenebush@tubesys.com',
+//       eyeColor: 'blue',
+//       friends: ['Briana Decker', 'Sharron Pace'],
+//       isActive: true,
+//       balance: 3821,
+//       skills: ['tempor', 'mollit', 'commodo', 'veniam', 'laborum'],
+//       gender: 'female',
+//       age: 34,
+//     },
+//     {
+//       name: 'Ross Vazquez',
+//       email: 'rossvazquez@xinware.com',
+//       eyeColor: 'green',
+//       friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//       isActive: false,
+//       balance: 3793,
+//       skills: ['nulla', 'anim', 'proident', 'ipsum', 'elit'],
+//       gender: 'male',
+//       age: 24,
+//     },
+//     {
+//       name: 'Elma Head',
+//       email: 'elmahead@omatom.com',
+//       eyeColor: 'green',
+//       friends: ['Goldie Gentry', 'Aisha Tran'],
+//       isActive: true,
+//       balance: 2278,
+//       skills: ['adipisicing', 'irure', 'velit'],
+//       gender: 'female',
+//       age: 21,
+//     },
+//     {
+//       name: 'Carey Barr',
+//       email: 'careybarr@nurali.com',
+//       eyeColor: 'blue',
+//       friends: ['Jordan Sampson', 'Eddie Strong'],
+//       isActive: true,
+//       balance: 3951,
+//       skills: ['ex', 'culpa', 'nostrud'],
+//       gender: 'male',
+//       age: 27,
+//     },
+//     {
+//       name: 'Blackburn Dotson',
+//       email: 'blackburndotson@furnigeer.com',
+//       eyeColor: 'brown',
+//       friends: ['Jacklyn Lucas', 'Linda Chapman'],
+//       isActive: false,
+//       balance: 1498,
+//       skills: ['non', 'amet', 'ipsum'],
+//       gender: 'male',
+//       age: 38,
+//     },
+//     {
+//       name: 'Sheree Anthony',
+//       email: 'shereeanthony@kog.com',
+//       eyeColor: 'brown',
+//       friends: ['Goldie Gentry', 'Briana Decker'],
+//       isActive: true,
+//       balance: 2764,
+//       skills: ['lorem', 'veniam', 'culpa'],
+//       gender: 'female',
+//       age: 39,
+//     },
+//   ];
+
+// const getUserNames = users => {
+//   return users.map(user => user.name)
+// };
+
+// console.log(getUserNames(users));
+// //-------------------------------------------
+// // 14/44
+// const getUserEmails = users => {
+//   return users.map(user => user.email)
+// };
+
+// console.log(getUserEmails(users));
+//------------------------------------------------------------------------------------
+
+// 15/44
+// Дополни код так, чтобы в переменной evenNumbers получился массив чётных
+// чисел из массива numbers, а в переменной oddNumbers массив нечётных.
+// Обязательно используй метод filter().
+
+// const numbers = [17, 24, 82, 61, 36, 18, 47, 52, 73];
+// // Пиши код ниже этой строки
+
+// const evenNumbers = numbers.filter(number => number % 2 === 0);
+// console.log(evenNumbers);
+// const oddNumbers = numbers.filter(number => number % 2 !== 0);
+// console.log(oddNumbers);
+//------------------------------------------------------------------------------------
+// 16/44
+// Дополни код так, чтобы в переменной allGenres был массив всех жанров
+// книг(свойство genres) из массива books, а в переменной uniqueGenres
+// массив уникальных жанров - без повторений.
+
+// const books = [
+//   {
+//     title: 'Последнее королевство',
+//     author: 'Бернард Корнуэлл',
+//     genres: ['приключения', 'историческое']
+//   },
+//   {
+//     title: 'На берегу спокойных вод',
+//     author: 'Роберт Шекли',
+//     genres: ['фантастика', 'мистика']
+//   },
+//   {
+//     title: 'Красна как кровь',
+//     author: 'Ли Танит',
+//     genres: ['ужасы', 'мистика', 'приключения']
+//   }
+// ];
+// // Пиши код ниже этой строки
+// const allGenres = books.flatMap(book => book.genres);
+// console.log(allGenres);
+// const uniqueGenres = allGenres.filter((genr, index, array) => array.indexOf(genr) === index);
+// console.log(uniqueGenres);
+//------------------------------------------------------------------------------------
+// 17/44
+// Используя метод filter() дополни код так, чтобы:
+
+// В переменной topRatedBooks получился массив книг рейтинг которых
+// (свойство rating) больше  либо равно значению переменной MIN_RATING.
+// В переменной booksByAuthor получился массив книг написанных автором с
+// именем(свойство author) которое совпадает со значением в переменной AUTHOR.
+
+// const books = [
+//   { title: 'Последнее королевство', author: 'Бернард Корнуэлл', rating: 8.38 },
+//   { title: 'На берегу спокойных вод', author: 'Роберт Шекли', rating: 8.51 },
+//   { title: 'Сон смешного человека', author: 'Федор Достоевский', rating: 7.75 },
+//   { title: 'Красна как кровь', author: 'Ли Танит', rating: 7.94 },
+//   { title: 'Враг Божий', author: 'Бернард Корнуэлл', rating: 8.67 }
+// ];
+
+// const MIN_RATING = 8;
+// const AUTHOR = 'Бернард Корнуэлл';
+// // Пиши код ниже этой строки
+
+// const topRatedBooks = books.filter(book =>  
+// book.rating >= MIN_RATING);
+// console.log(topRatedBooks);
+// const booksByAuthor = books.filter(book => book.author === AUTHOR);
+// console.log(booksByAuthor);
+//------------------------------------------------------------------------------------
+//18/44
+// Дополни функцию getUsersWithEyeColor(users, color) так, чтобы она возвращала массив
+// пользователей у которых цвет глаз(свойство eyeColor) совпадает со значением параметра
+// color.
+
+// const getUsersWithEyeColor = (users, color) => {
+
+//   return users.filter(user => user.eyeColor === color);
+
+// };
+// console.log(getUsersWithEyeColor(users, 'brown'));
+//------------------------------------------------------------------------------------
+// 19/44
+// Дополни функцию getUsersWithAge(users, minAge, maxAge) так, чтобы она возвращала
+// массив пользователей, возраст которых(свойство age) попадает в промежуток от minAge
+// до maxAge.
+
+const users =
+  [
+    {
+      name: 'Moore Hensley',
+      email: 'moorehensley@indexia.com',
+      eyeColor: 'blue',
+      friends: ['Sharron Pace'],
+      isActive: false,
+      balance: 2811,
+      gender: 'male',
+      age: 37
+    },
+    {
+      name: 'Sharlene Bush',
+      email: 'sharlenebush@tubesys.com',
+      eyeColor: 'blue',
+      friends: ['Briana Decker', 'Sharron Pace'],
+      isActive: true,
+      balance: 3821,
+      gender: 'female',
+      age: 34
+    },
+    {
+      name: 'Ross Vazquez',
+      email: 'rossvazquez@xinware.com',
+      eyeColor: 'green',
+      friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+      isActive: false,
+      balance: 3793,
+      gender: 'male',
+      age: 24
+    },
+    {
+      name: 'Elma Head',
+      email: 'elmahead@omatom.com',
+      eyeColor: 'green',
+      friends: ['Goldie Gentry', 'Aisha Tran'],
+      isActive: true,
+      balance: 2278,
+      gender: 'female',
+      age: 21
+    },
+    {
+      name: 'Carey Barr',
+      email: 'careybarr@nurali.com',
+      eyeColor: 'blue',
+      friends: ['Jordan Sampson', 'Eddie Strong'],
+      isActive: true,
+      balance: 3951,
+      gender: 'male',
+      age: 27
+    },
+    {
+      name: 'Blackburn Dotson',
+      email: 'blackburndotson@furnigeer.com',
+      eyeColor: 'brown',
+      friends: ['Jacklyn Lucas', 'Linda Chapman'],
+      isActive: false,
+      balance: 1498,
+      gender: 'male',
+      age: 38
+    },
+    {
+      name: 'Sheree Anthony',
+      email: 'shereeanthony@kog.com',
+      eyeColor: 'brown',
+      friends: ['Goldie Gentry', 'Briana Decker'],
+      isActive: true,
+      balance: 2764,
+      gender: 'female',
+      age: 39
+    }
+  ]
+
+
+// const getUsersWithAge = (users, minAge, maxAge) => {
+
+//   return users.filter(user => user.age >= minAge && user.age <= maxAge);
+
+
+// };
+// console.table(getUsersWithAge(users, 20, 30));
+
+// 20/44
+// Дополни функцию getUsersWithFriend(users, friendName) так, чтобы она возвращала
+// массив пользователей у которых есть друг с именем в параметре friendName.Массив
+// друзей пользователя хранится в свойстве friends.
+
+// const getUsersWithFriend = (users, friendName) => {
+
+//   return users.filter(user => user.friends.includes(friendName)    
+//   );
+// };
+
+// console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+//------------------------------------------------------------------------------------
+//21/44
+// Дополни функцию getFriends(users) так, чтобы она возвращала массив
+// друзей всех пользователей(свойство friends).У нескольких пользователей
+// могут быть одинаковые друзья, сделай так чтобы возвращаемый массив не
+// содержал повторений.
+
+
+// const getFriends = (users) => {
+//   return users.flatMap(user => user.friends).filter((elem, index, arr) =>
+//     arr.indexOf(elem) === index);};
+
+
+// console.table(getFriends(users));
+//['Sharron Pace', 'Briana Decker', 'Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner', 'Goldie Gentry', 'Aisha Tran', 'Jordan Sampson', 'Eddie Strong', 'Jacklyn Lucas', 'Linda Chapman'].
+//------------------------------------------------------------------------------------
+//22/44
+// Дополни функцию getActiveUsers(users) так, чтобы она возвращала массив
+// активных пользователей, значение свойства isActive которых true.
+
+// const getActiveUsers = (users) => {
+
+//   return users.filter(user => user.isActive === true
+//   )
+
+// };
+
+// console.table(getActiveUsers(users))
+// //------------------------------------------------------------------------------------
+// 23/44
+// Дополни функцию getInactiveUsers(users) так, чтобы она возвращала массив неактивных
+// пользователей, значение свойства isActive которых false.
+
+// const getInactiveUsers = (users) => {
+//   return users.filter(user => user.isActive !== true
+//   )
+
+// };
+
+// console.table(getInactiveUsers(users));
+//------------------------------------------------------------------------------------
+
+// 24/44
+// Используя метод find() дополни код так, чтобы:
+
+// В переменной bookWithTitle получился объект книги название которой(свойство title)
+// совпадает со значением переменной BOOK_TITLE.
+// В переменной bookByAuthor получился объект книги автор который
+//   (свойство author) совпадает со значением переменной AUTHOR.
+
+// const books = [
+//   { title: 'Последнее королевство', author: 'Бернард Корнуэлл', rating: 8.38 },
+//   { title: 'На берегу спокойных вод', author: 'Роберт Шекли', rating: 8.51 },
+//   { title: 'Сон смешного человека', author: 'Федор Достоевский', rating: 7.75 },
+//   { title: 'Красна как кровь', author: 'Ли Танит', rating: 7.94 },
+// ];
+// const BOOK_TITLE = 'Сон смешного человека';
+// const AUTHOR = 'Роберт Шекли';
+// // Пиши код ниже этой строки
+
+// const bookWithTitle = books.find((book) => book.title === BOOK_TITLE);
+// console.log(bookWithTitle);
+// const bookByAuthor = books.find(book => book.author === AUTHOR);
+// console.log(bookByAuthor);
+//------------------------------------------------------------------------------------
+
+// 25/44
+// Дополни функцию getUserWithEmail(users, email) так, чтобы она возвращала объект
+// пользователя, почта которого(свойство email) совпадает со значением параметра email.
+
+// const getUserWithEmail = (users, email) => {
+
+//   return users.find(user => user.email === email);
+
+// };
+
+// console.log(getUserWithEmail(users, 'shereeanthony@kog.com'));
+
+//------------------------------------------------------------------------------------
+// 26/44
+// Используя метод every() дополни код так, чтобы:
+
+// В переменной eachElementInFirstIsEven был результат проверки всех элементов массива firstArray на чётность.
+// В переменной eachElementInFirstIsOdd был результат проверки всех элементов массива firstArray на нечётность.
+// В переменной eachElementInSecondIsEven был результат проверки всех элементов массива secondArray на чётность.
+// В переменной eachElementInSecondIsOdd был результат проверки всех элементов массива secondArray на нечётность.
+// В переменной eachElementInThirdIsEven был результат проверки всех элементов массива thirdArray на чётность.
+// В переменной eachElementInThirdIsOdd был результат проверки всех элементов массива thirdArray на нечётность.
+
+// const firstArray = [26, 94, 36, 18];
+// const secondArray = [17, 61, 23];
+// const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+// // Пиши код ниже этой строки
+
+// const eachElementInFirstIsEven = firstArray.every(el => el % 2 === 0);
+// console.log(eachElementInFirstIsEven);
+// const eachElementInFirstIsOdd = firstArray.every(el => el % 2 !== 0);
+
+// const eachElementInSecondIsEven = secondArray.every(el => el % 2 === 0);
+// const eachElementInSecondIsOdd = secondArray.every(el => el % 2 !== 0);
+
+// const eachElementInThirdIsEven = thirdArray.every(el => el % 2 === 0);
+// const eachElementInThirdIsOdd = thirdArray.every(el => el % 2 !== 0);
+//------------------------------------------------------------------------------------
+// 27/44
+// Дополни функцию isEveryUserActive(users) так, чтобы она проверяла все л
+// и пользователи сейчас активны(свойство isActive) и возвращала true или false.
+
+// const isEveryUserActive = (users) => {
+//   return users.every(user => user.isActive === true);
+// };
+
+// console.log(isEveryUserActive(users));
+///------------------------------------------------------------------------------------
+// 28/44
+// Используя метод some() дополни код так, чтобы:
+
+// В переменной anyElementInFirstIsEven был результат проверки наличия чётных
+// элементов в массиве firstArray.
+// В переменной anyElementInFirstIsOdd был результат проверки наличия
+// нечётных элементов в массиве firstArray.
+// const firstArray = [26, 94, 36, 18];
+// const secondArray = [17, 61, 23];
+// const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+// // Пиши код ниже этой строки
+
+// const anyElementInFirstIsEven = firstArray.some(el => el % 2 === 0);
+// const anyElementInFirstIsOdd = firstArray.some(el => el % 2 !== 0);;
+
+// const anyElementInSecondIsEven = secondArray.some(el => el % 2 === 0);;
+// const anyElementInSecondIsOdd = secondArray.some(el => el % 2 !== 0);;
+
+// const anyElementInThirdIsEven = thirdArray.some(el => el % 2 === 0);;
+// const anyElementInThirdIsOdd = thirdArray.some(el => el % 2 !== 0);;
+//------------------------------------------------------------------------------------
+
+// 29/44
+// Дополни функцию isAnyUserActive(users) так, чтобы она проверяла наличие активных
+// пользователей(свойство isActive) и возвращала true или false.
+
+// const isAnyUserActive = users => {
+//   return users.some(user => user.isActive === true);
+// }
+//------------------------------------------------------------------------------------
+// 30/44
+// Игровому сервису необходим функционал подсчёта среднего времени проведённого
+// в играх.Дополни код так, чтобы в переменной totalPlayTime получилось общее игровое
+// время из массива playtimes.
+
+// const players = {
+//   mango: 1270,
+//   poly: 468,
+//   ajax: 710,
+//   kiwi: 244
+// };
+// const playtimes = Object.values(players); // [1270, 468, 710, 244]
+// // Пиши код ниже этой строки
+
+// const totalPlayTime = playtimes.reduce((prevTime, time) => {
+//   return prevTime + time;
+// },0);
+// console.log(totalPlayTime);
+// // Пиши код выше этой строки
+// const averagePlayTime = totalPlayTime / playtimes.length;
+//------------------------------------------------------------------------------------
+// 31/44
+// Нашему сервису необходимо рассчитать среднее время проведённое в одной
+// игре для каждого игрока, и получить общую сумму этих времён.Рассчитать
+// время для каждого из игроков, можно разделив его время(свойство playtime)
+// на количество игр(свойство gamesPlayed).
+
+// const players = [
+//   { name: 'Манго', playtime: 1270, gamesPlayed: 4 },
+//   { name: 'Поли', playtime: 469, gamesPlayed: 2 },
+//   { name: 'Аякс', playtime: 690, gamesPlayed: 3 },
+//   { name: 'Киви', playtime: 241, gamesPlayed: 1 },
+// ];
+// // Пиши код ниже этой строки
+
+// const totalAveragePlaytimePerGame = players.reduce((acc, player) => {
+//   return acc += player.playtime / player.gamesPlayed
+// },0)
+
+// console.log(totalAveragePlaytimePerGame); // это число 1023.)
+
+// 32/44
+// Дополни функцию calculateTotalBalance(users) так, чтобы она считала и
+// возвращала сумму всех средств(свойство balance) которые хранят пользователи
+// из массива users.
+
+const calculateTotalBalance = users => {
+
+  return users.reduce((balanse, userBalanse) => {
+    return balanse += userBalanse.balance;
+  },0)
+
+};
+
+console.log(calculateTotalBalance(users)); //20916.
+
+// 33/44
+Дополни функцию getTotalFriendCount(users) так, чтобы она считала и возвращала
+общее количество друзей(свойство friends) всех пользователей из массива users.
+
+
+
+
 
 
 //------------------------------------------------------------------------------------
@@ -3440,3 +4244,14 @@ function calculateTotalPrice(orderedItems) {
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
+//------------
