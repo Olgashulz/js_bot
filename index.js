@@ -687,7 +687,7 @@
 // console.log(calculateTotalPrice([412, 371, 94, 63, 176])); //возвращает 1116
 // -----------------------------------------------------------------------------
 
-// 21/32
+// /32
 // Напиши функцию findLongestWord(string) которая принимает произвольную строку 
 // состоящую только из слов разделённых пробелом (параметр string) и возвращает 
 // самое длинное слово в этой строке.
@@ -4220,34 +4220,258 @@ const users =
 // возвращала сумму всех средств(свойство balance) которые хранят пользователи
 // из массива users.
 
-const calculateTotalBalance = users => {
+// const calculateTotalBalance = users => {
 
-  return users.reduce((balanse, userBalanse) => {
-    return balanse += userBalanse.balance;
+//   return users.reduce((balanse, userBalanse) => {
+//     return balanse += userBalanse.balance;
+//   },0)
+
+// };
+
+// console.log(calculateTotalBalance(users)); //20916.
+
+// 33/44
+// Дополни функцию getTotalFriendCount(users) так, чтобы она считала и возвращала
+// общее количество друзей(свойство friends) всех пользователей из массива users.
+
+// const getTotalFriendCount = users => {
+//   return users.reduce((acc, userFriends) => {
+//     return acc += userFriends.friends.length;
+//  },0)
+// };
+
+// console.log(getTotalFriendCount(users));
+//------------------------------------------------------------------------------------
+// 34/44
+// Дополни код так, чтобы в переменной ascendingReleaseDates получилась отсортированная по
+// возрастанию копия массива releaseDates, а в переменной alphabeticalAuthors копия массива имён авторов authors отсортированная в по алфавиту.
+
+// const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+// const authors = [
+//   'Ли Танит',
+//   'Бернард Корнуэлл',
+//   'Роберт Шекли',
+//   'Федор Достоевский'
+// ];
+// // Пиши код ниже этой строки
+
+// const ascendingReleaseDates = [...releaseDates].sort();
+// console.log(ascendingReleaseDates);
+
+// const alphabeticalAuthors = [...authors].sort();
+// console.log(alphabeticalAuthors);
+//------------------------------------------------------------------------------------
+// 35/44
+// Онлайн бибилиотеке необходимо отображать книги сортированные по дате издания,
+//   по её возрастанию или убыванию.Дополни код так, чтобы в переменной
+// ascendingReleaseDates получилась отсортированная по возрастанию копия массива
+// releaseDates, а в переменной descendingReleaseDates копия отсортированная по
+// убыванию.
+
+// const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+// // Пиши код ниже этой строки
+
+// const ascendingReleaseDates = [...releaseDates].sort((prevNum, num) => prevNum - num);
+// console.log(ascendingReleaseDates);
+
+// const descendingReleaseDates = [...releaseDates].sort((prevNum, num) => {
+//   return num - prevNum;
+// });
+// console.log(descendingReleaseDates);
+//------------------------------------------------------------------------------------
+// 36/44
+// Онлайн бибилиотеке необходимо отображать книги отсортированные по автору, в алфавитном
+// и обратном алфавитном порядке.Дополни код так, чтобы в переменной authorsInAlphabetOrder
+// получилась отсортированная по алфавиту копия массива authors, а в переменной
+// authorsInReversedOrder копия отсортированная в обратном алфавитном порядке.
+
+// const authors = [
+//   'Ли Танит',
+//   'Бернард Корнуэлл',
+//   'Роберт Шекли',
+//   'Федор Достоевский',
+//   'Говард Лавкрафт'
+// ];
+// // Пиши код ниже этой строки
+
+// const authorsInAlphabetOrder = [...authors].sort((a, b) => a.localeCompare(b));
+// console.log(authorsInAlphabetOrder);
+// const authorsInReversedOrder = [...authors].sort((a, b) => b.localeCompare(a));
+// console.log(authorsInReversedOrder);
+//------------------------------------------------------------------------------------
+// 37/44
+// Дополни код так, чтобы:
+
+// В переменной sortedByAuthorName получился массив книг отсортированный по имени
+// автора в алфавитном порядке.
+// В переменной sortedByReversedAuthorName получился массив книг отсортированный
+// по имени автора в обратном алфавитном порядке.
+// В переменной sortedByAscendingRating получился массив книг отсортированный по
+// возрастанию рейтинга.
+// В переменной sortedByDescentingRating получился массив книг отсортированный по
+// убыванию рейтинга.
+
+// const books = [
+//   { title: 'Последнее королевство', author: 'Бернард Корнуэлл', rating: 8.38 },
+//   { title: 'На берегу спокойных вод', author: 'Роберт Шекли', rating: 8.51 },
+//   { title: 'Сон смешного человека', author: 'Федор Достоевский', rating: 7.75 },
+//   { title: 'Красна как кровь', author: 'Ли Танит', rating: 7.94 },
+//   { title: 'Враг Божий', author: 'Бернард Корнуэлл', rating: 8.67 }
+// ];
+// Пиши код ниже этой строки
+
+// const sortedByAuthorName = books.flatMap(book => book.author)
+//   .sort((a, b) => a.localeCompare(b));
+// console.log(sortedByAuthorName);
+
+// const sortedByReversedAuthorName = books.flatMap(book => book.author)
+//   .sort((a, b) => b.localeCompare(a));
+// console.log(sortedByReversedAuthorName);
+
+// const sortedByAscendingRating = books.flatMap(book => book.rating)
+//   .sort();
+// console.log(sortedByAscendingRating);
+
+// const sortedByDescentingRating = books.flatMap(book => book.rating)
+//   .sort((prevNum, num) => num - prevNum);
+// console.log(sortedByDescentingRating);
+
+// const sortedByAuthorName = [...books].sort((a, b) =>
+//   a.author.localeCompare(b.author));
+// console.table(sortedByAuthorName);
+
+// const sortedByReversedAuthorName = [...books].sort((a, b) =>
+//   b.author.localeCompare(a.author));
+// console.table(sortedByReversedAuthorName);
+
+// const sortedByAscendingRating = [...books].sort((prevNum, num) =>
+//   prevNum.rating - num.rating);
+// console.table(sortedByAscendingRating);
+
+// const sortedByDescentingRating = [...books].sort((prevNum, num) =>
+//   num.rating - prevNum.rating);
+// console.table(sortedByDescentingRating);
+//------------------------------------------------------------------------------------
+
+// 38/44
+// Дополни функцию sortByAscendingBalance(users) так, чтобы она возвращала массив
+// пользователей отсортированный по возрастанию их баланса(свойство balance).
+
+
+// const sortByAscendingBalance = users => {
+
+//   return [...users].sort((a, b) =>
+//     a.balance - b.balance)
+
+// };
+
+// console.table(sortByAscendingBalance(users));
+//------------------------------------------------------------------------------------
+// 39/44
+// Дополни функцию sortByDescendingFriendCount(users) так, чтобы она возвращала
+// массив пользователей отсортированный по убыванию количества их друзей
+//   (свойство friends).
+
+// const sortByDescendingFriendCount = users => {
+
+//   return [...users].sort((a, b) => 
+//      b.friends.length - a.friends.length
+//   )
+
+// };
+
+// console.table(sortByDescendingFriendCount(users));
+//------------------------------------------------------------------------------------
+
+// 40/44
+// Дополни функцию sortByName(users) так, чтобы она возвращала массив пользователей
+// отсортированный по их имени(свойство name) в алфавитном порядке.
+
+// const sortByName = users => {
+  
+//   return [...users].sort((a, b) => a.name.localeCompare(b.name));
+// };
+
+// console.table(sortByName(users));
+//-----------------------------------------------------------------------------------
+
+// 41/44
+// Дополни код так, чтобы в переменной names получился массив имён авторов в
+// алфавитном порядке, рейтинг книг которых больше значения переменной
+// MIN_BOOK_RATING.
+
+// const books = [
+//   { title: 'Последнее королевство', author: 'Бернард Корнуэлл', rating: 8.38 },
+//   { title: 'На берегу спокойных вод', author: 'Роберт Шекли', rating: 8.51 },
+//   { title: 'Сон смешного человека', author: 'Федор Достоевский', rating: 7.75 },
+//   { title: 'Красна как кровь', author: 'Ли Танит', rating: 8.14 },
+//   { title: 'Сны В Ведьмином Доме', author: 'Говард Лавкрафт', rating: 8.67 }
+// ];
+// const MIN_BOOK_RATING = 8;
+
+// const names = books.filter(book => book.rating > MIN_BOOK_RATING)
+//   .sort((a, b) => a.author.localeCompare(b.author))
+//   .map(book => book.author);
+// console.table(names);
+//------------------------------------------------------------------------------------
+//42/44
+// Дополни функцию getNamesSortedByFriendCount(users) так, чтобы она возвращала
+// массив имён пользователей отсортированный по возрастанию количества их
+// друзей(свойство friends).
+
+// const getNamesSortedByFriendCount = users => {
+
+//   return [...users].sort((a, b) => a.friends.length - b.friends.length)
+//     .map(user => user.name);  
+
+// };
+
+// console.log(getNamesSortedByFriendCount(users));
+//------------------------------------------------------------------------------------
+
+// 43/44
+// Дополни функцию getSortedFriends(users) так, чтобы она возвращала массив
+// уникальных имён друзей(свойство friends) отсортированный по алфавиту.
+
+// const getSortedFriends = users => {
+
+//   return users.flatMap(user => user.friends)
+//     .filter((friend, index, array) => array.indexOf(friend) === index)
+//     .sort((a, b) => a.localeCompare(b));
+
+// };
+
+// console.table(getSortedFriends(users));
+//------------------------------------------------------------------------------------
+
+// 44/44
+// Дополни функцию getTotalBalanceByGender(users, gender) так, чтобы она
+// возвращала общий баланс пользователей(свойство balance), пол
+// которых(свойство gender) совпадает со значением параметра gender.
+
+
+const getTotalBalanceByGender = (users, gender) => {
+
+  return users.filter(user => user.gender === gender)
+    .reduce((acc, user) => {
+    return acc += user.balance
   },0)
 
 };
 
-console.log(calculateTotalBalance(users)); //20916.
-
-// 33/44
-Дополни функцию getTotalFriendCount(users) так, чтобы она считала и возвращала
-общее количество друзей(свойство friends) всех пользователей из массива users.
+// const totalAveragePlaytimePerGame = players.reduce((acc, player) => {
+//   return acc += player.playtime / player.gamesPlayed
+// },0)
 
 
+//   orderedItems.forEach(item => {
+//     totalPrice += item;    
+//   });
 
-
-
-
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------
+console.log(getTotalBalanceByGender(users, 'male'))
+//'male', функция возвращает число 12053.
+console.log(getTotalBalanceByGender(users, 'female'))
+//'female', функция возвращает число 8863.
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
