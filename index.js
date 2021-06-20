@@ -4459,15 +4459,6 @@ const getTotalBalanceByGender = (users, gender) => {
 
 };
 
-// const totalAveragePlaytimePerGame = players.reduce((acc, player) => {
-//   return acc += player.playtime / player.gamesPlayed
-// },0)
-
-
-//   orderedItems.forEach(item => {
-//     totalPrice += item;    
-//   });
-
 console.log(getTotalBalanceByGender(users, 'male'))
 //'male', функция возвращает число 12053.
 console.log(getTotalBalanceByGender(users, 'female'))
