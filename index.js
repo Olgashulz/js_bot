@@ -4450,19 +4450,19 @@ const users =
 // которых(свойство gender) совпадает со значением параметра gender.
 
 
-const getTotalBalanceByGender = (users, gender) => {
+// const getTotalBalanceByGender = (users, gender) => {
 
-  return users.filter(user => user.gender === gender)
-    .reduce((acc, user) => {
-    return acc += user.balance
-  },0)
+//   return users.filter(user => user.gender === gender)
+//     .reduce((acc, user) => {
+//     return acc += user.balance
+//   },0)
 
-};
+// };
 
-console.log(getTotalBalanceByGender(users, 'male'))
-//'male', функция возвращает число 12053.
-console.log(getTotalBalanceByGender(users, 'female'))
-//'female', функция возвращает число 8863.
+// console.log(getTotalBalanceByGender(users, 'male'))
+// //'male', функция возвращает число 12053.
+// console.log(getTotalBalanceByGender(users, 'female'))
+// //'female', функция возвращает число 8863.
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
