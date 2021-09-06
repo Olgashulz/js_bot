@@ -151,7 +151,7 @@
 // }
 // -----------------------------------------------------------------------------
 
-// // 28/36
+// 28/36
 // function checkPassword(password) {
 //   const ADMIN_PASSWORD = "jqueryismyjam";
 //     let message;
@@ -366,17 +366,17 @@
 // удали else
 // код должен работать так же, как и до оптимизации
 
-// function checkPassword(password) {
-//   const ADMIN_PASSWORD = "jqueryismyjam";
+function checkPassword(password) {
+  const ADMIN_PASSWORD = "jqueryismyjam";
  
-//   if (password === ADMIN_PASSWORD) {
-//     return "Welcome!";
-//   } 
-//     return "Access denied, wrong password!";
-// }
-// console.log(checkPassword("mangohackzor"));// возвращает "Access denied, wrong password!"
-// console.log(checkPassword("polyhax"));// возвращает "Access denied, wrong password!"
-// console.log(checkPassword("jqueryismyjam"));// возвращает "Welcome!"
+  if (password === ADMIN_PASSWORD) {
+    return "Welcome!";
+  } 
+    return "Access denied, wrong password!";
+}
+console.log(checkPassword("mangohackzor"));// возвращает "Access denied, wrong password!"
+console.log(checkPassword("polyhax"));// возвращает "Access denied, wrong password!"
+console.log(checkPassword("jqueryismyjam"));// возвращает "Welcome!"
 // -----------------------------------------------------------------------------
 
 // 3/32
@@ -4470,3 +4470,15 @@ const users =
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------
 //------------
+
+
+function createBoxes(number) {
+  let sum = 0;
+  for (let i = 1; i <= number; i += 1) {
+    sum = sum + i;
+  }
+  console.log(sum);
+  return sum;
+}
+
+createBoxes(5);
