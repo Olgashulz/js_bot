@@ -3939,10 +3939,10 @@ const users =
   [
     {
       name: 'Moore Hensley',
-      email: 'moorehensley@indexia.com',
+      email: 4,
       eyeColor: 'blue',
       friends: ['Sharron Pace'],
-      isActive: false,
+      isActive: null,
       balance: 2811,
       gender: 'male',
       age: 37
@@ -4029,6 +4029,29 @@ const users =
 //   );
 // };
 
+// const getUsers = (users) => {
+
+//   return users.map(el => {
+//     console.log(el.email);
+//     console.log(el.email === 4)
+//     if(el.email === null){
+//       return 
+//     } else {
+//       return el;
+//     }
+//   })
+// }
+// console.log(getUsers(users));
+
+// map(el => {
+//   if(el <= 3){
+//     return (
+//       <div>el</div>
+//     )
+//   } else {
+//     console.log(el, 'the el')
+//   }
+
 // console.log(getUsersWithFriend(users, 'Goldie Gentry'));
 //------------------------------------------------------------------------------------
 //21/44
@@ -4050,14 +4073,14 @@ const users =
 // Дополни функцию getActiveUsers(users) так, чтобы она возвращала массив
 // активных пользователей, значение свойства isActive которых true.
 
-// const getActiveUsers = (users) => {
+const getActiveUsers = (users) => {
 
-//   return users.filter(user => user.isActive === true
-//   )
+  return users.filter(user => user.isActive !== null
+  )
 
-// };
+};
 
-// console.table(getActiveUsers(users))
+ console.table(getActiveUsers)
 // //------------------------------------------------------------------------------------
 // 23/44
 // Дополни функцию getInactiveUsers(users) так, чтобы она возвращала массив неактивных
