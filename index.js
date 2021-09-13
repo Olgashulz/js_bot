@@ -4505,3 +4505,295 @@ function createBoxes(number) {
 }
 
 createBoxes(5);
+
+
+addIdToLocalSt.js
+let openArr = '';
+export const OPEN_NOW = 'themeNow';
+
+export default function addIdToLocalSt(idQuery) {
+  console.log('hi LocalSt')
+  console.log(idQuery);
+
+  // let filmsIdInLocalStorage = JSON.parse(localStorage.getItem('OpenNow'));
+
+  // if (filmsIdInLocalStorage !== []) {
+  //     openArr = filmsIdInLocalStorage;
+  // }
+  // if (filmsIdInLocalStorage === null) {
+  //     filmsIdInLocalStorage = [];
+  //     openArr = filmsIdInLocalStorage;
+  // }
+  // if (filmsIdInLocalStorage.includes(idQuery)) {
+  //     return;
+  // }
+  openArr = idQuery;
+  localStorage.setItem('OpenNow', openArr);
+}
+
+export function delIdToLocalSt(idQuery) {
+  openArr = '';
+}
+//////////////////////////////////////
+modal.js
+import * as basicLightbox from './basicLightbox.min.js';
+import renderModalMarkup from '../templates/modalTpl.hbs';
+import gallery from '../templates/gallery.hbs';
+import { apiService } from '../index';
+import getRefs from './get-refs';
+import showAllert from './show-allert';
+const refs = getRefs();
+import addToWatched from './addToWatched.js';
+import addToQueue from './addToQueue.js';
+import checkLocalSt from './chekLocalSt';
+import { checkThemeNow, changeTheme } from './themes.js';
+import { Theme } from './themes.js';
+import addIdToLocalSt from './addIdToLocalSt';
+import delIdToLocalSt from './delFromLsFromModal'
+
+
+const modal = basicLightbox.create('<div class="modal js-modal"></div>');
+
+export let idQuery = '';
+
+export default function openModal(e) {
+  e.preventDefault();
+  document.onkeydown = evt => {
+    if (evt.code === 'Escape') modal.close();
+  };
+}
+
+function getMovieById(evt) {
+  if (!evt.target.classList.contains('gallery__video')) {
+    return;
+  }
+  idQuery = evt.target.dataset.source;
+  console.log(idQuery);
+  addIdToLocalSt(idQuery);
+  fetchMovies(idQuery);
+  modal.show();
+}
+
+function fetchMovies(id) {
+  apiService.getMovieByID(id).then(showMarkup).catch(showAllert);
+}
+
+function showMarkup(data) {
+  const modalWindow = document.querySelector('.modal');
+  modalWindow.innerHTML = renderModalMarkup(data);
+  console.log(refs.containerEl.classList.contains(Theme.DARK));
+  if (refs.containerEl.classList.contains(Theme.DARK)) {
+    modalWindow.classList.add(Theme.DARK);
+  }
+  else {
+    console.log(refs.containerEl.classList.contains(Theme.LIGHT));
+    modalWindow.classList.replace(Theme.DARK, Theme.LIGHT);
+  }
+  const closeBtn = document.querySelector('.modal__close-btn');
+  const watchedBtn = document.querySelector('.watchedBtn-js');
+  const queueBtn = document.querySelector('.queueBtn-js');
+  closeBtn.addEventListener('click', (modalWindow.openModal = () => modal.close()));
+  closeBtn.addEventListener('click', (modalWindow.close = () => modal.close()));
+  watchedBtn.addEventListener('click', addToWatched);
+  queueBtn.addEventListener('click', addToQueue);
+  checkLocalSt(idQuery, queueBtn, watchedBtn);
+}
+
+refs.movies.addEventListener('click', getMovieById);
+/////////////////////////////////////////////////////////
+checkLocalSt.js
+import toggleBtn from './toggleBtn.js';
+
+export default function checkLocalSt(idQuery, queueBtn, watchedBtn) {
+  let localStorageQueue = JSON.parse(localStorage.getItem('Queue'));
+  let localStorageWatched = JSON.parse(localStorage.getItem('Watched'));
+
+
+  if (localStorageQueue === null) {
+    return;
+  }
+
+  if (localStorageQueue.includes(idQuery)) {
+    toggleBtn(queueBtn);
+  }
+
+  if (localStorageWatched.includes(idQuery)) {
+    toggleBtn(watchedBtn);
+  }
+}
+///////////////////////////////////////////////////////////////
+toggleBtn.js
+import addToWatched from './addToWatched.js';
+import addToQueue from './addToQueue.js';
+import deleteFromQueueList from './deleteFromQueueList.js';
+import deleteFromWathedList from './deleteFromWatchedList.js';
+import delFromLsFromModal from './delFromLsFromModal.js'
+
+
+// export default function toggleBtn(btn) {
+//     console.log("hi")
+//     if (btn.classList.contains('queueBtn-js')) {
+//         if (btn.classList.contains('button-white')) {
+//             btn.classList.replace('button-white', 'button-orange');
+//             btn.textContent = 'Delete from Query';
+//             btn.removeEventListener("click", addToQueue);
+//             btn.addEventListener('click', deleteFromQueueList);
+//         } else {
+//             btn.classList.replace('button-orange', 'button-white');
+//             btn.textContent = 'Add to Query';
+//             btn.removeEventListener("click", deleteFromQueueList);
+//             btn.addEventListener('click', addToQueue);
+
+//         }
+//     } else {
+//         if (btn.classList.contains('button-white')) {
+//             btn.classList.replace('button-white', 'button-orange');
+//             btn.textContent = 'Delete from Wathed';
+//             btn.removeEventListener('click', addToWatched);
+//             btn.addEventListener('click', deleteFromWathedList);
+//         } else {
+//             btn.removeEventListener('click', deleteFromWathedList);
+//             btn.addEventListener('click', addToWatched);
+
+//         }
+//     }
+// }
+
+export default function toggleBtn(btn) {
+  console.log("hi")
+  let localKay = '';
+  let callbackAdd = null;
+  let callbackDelete = null;
+
+  if (btn.classList.contains('queueBtn-js')) {
+    localKay = 'Query';
+    callbackAdd = addToQueue;
+    callbackDelete = deleteFromQueueList;
+  } else {
+    localKay = 'Wathed';
+    callbackAdd = addToWatched;
+    callbackDelete = delFromLsFromModal;
+  }
+
+  if (btn.classList.contains('button-white')) {
+    btn.classList.replace('button-white', 'button-orange');
+    btn.textContent = `Delete from ${localKay}`;
+    btn.removeEventListener("click", callbackAdd);
+    btn.addEventListener('click', callbackDelete);
+  } else {
+    btn.classList.replace('button-orange', 'button-white');
+    btn.textContent = `Add to Query ${localKay}`;
+    btn.removeEventListener("click", callbackDelete);
+    btn.addEventListener('click', addToQueue);
+  }
+}
+///////////////////////////////////////////////////////
+addToWatched.js
+import { idQuery } from './modal';
+import toggleBtn from './toggleBtn';
+let watchedArr = [];
+
+export default function addToWatched(event) {
+  let eventBtn = event.target
+  console.log(eventBtn);
+  if (watchedArr.includes(idQuery)) {
+    return;
+  }
+  let filmsIdInLocalStorage = JSON.parse(localStorage.getItem('Watched'));
+  if (filmsIdInLocalStorage !== []) {
+    watchedArr = filmsIdInLocalStorage;
+  }
+  if (filmsIdInLocalStorage === null) {
+    filmsIdInLocalStorage = [];
+    watchedArr = filmsIdInLocalStorage;
+  }
+  if (filmsIdInLocalStorage.includes(idQuery)) {
+    return;
+  }
+  toggleBtn(eventBtn);
+  watchedArr.push(idQuery);
+  localStorage.setItem('Watched', JSON.stringify(watchedArr));
+}
+///////////////////////////////////////////////
+addToQueue.js
+import { idQuery } from './modal';
+import toggleBtn from './toggleBtn.js';
+let queueArr = [];
+
+export default function addToQueue(event) {
+  let eventBtn = event.target
+  console.log(eventBtn);
+  if (queueArr.includes(idQuery)) {
+    return;
+  }
+  let filmsIdInLocalStorage = JSON.parse(localStorage.getItem('Queue'));
+  if (filmsIdInLocalStorage !== []) {
+    queueArr = filmsIdInLocalStorage;
+  }
+  if (filmsIdInLocalStorage === null) {
+    filmsIdInLocalStorage = [];
+    queueArr = filmsIdInLocalStorage;
+  }
+  if (filmsIdInLocalStorage.includes(idQuery)) {
+    return;
+  }
+  toggleBtn(eventBtn);
+  queueArr.push(idQuery);
+  localStorage.setItem('Queue', JSON.stringify(queueArr));
+}
+///////////////////////////////////////////////////
+delFromLsFromModal.js
+// let openArr = [];
+// const OPEN_NOW = 'themeNow';
+import themeNow from './addIdToLocalSt.js'
+
+export default function deleteFromWathedList(evt) {
+  localStorage.getItem(themeNow)
+}
+
+export function addIdToLSt(idQuery) {
+  console.log(idQuery);
+}
+//////////////////////////////////////
+
+import addToWatched from './addToWatched.js';
+import addToQueue from './addToQueue.js';
+import deleteFromQueueList from './deleteFromQueueList.js';
+import deleteFromWathedList from './deleteFromWatchedList.js';
+import deleteIdFromQueueModal from './deleteIdFromLocalSt.js';
+
+
+
+export default function toggleBtn(btn) {
+  console.log("hi togle")
+  let localKay = '';
+  let callbackAdd = null;
+  let callbackDelete = null;
+
+  if (btn.classList.contains('queueBtn-js')) {
+    localKay = 'Query';
+    callbackAdd = addToQueue;
+    callbackDelete = deleteIdFromQueueModal;
+  } else {
+    localKay = 'Wathed';
+    callbackAdd = addToWatched;
+    callbackDelete = deleteFromQueueList;
+  }
+
+  if (btn.classList.contains('button-white')) {
+    console.log('будем менять белый на оранж')
+    btn.classList.replace('button-white', 'button-orange');
+    console.log('кнопка оранжевая?', btn.classList.contains('button-orange'))
+    btn.textContent = `Delete from ${localKay}`;
+    btn.removeEventListener('click', callbackAdd);
+    btn.addEventListener('click', callbackDelete);
+  } else {
+    console.log('будем менять оранж на белый')
+    btn.classList.replace('button-orange', 'button-white');
+    console.log('кнопка белая?', btn.classList.contains('button-white'))
+    btn.textContent = `Add to ${localKay}`;
+    btn.removeEventListener('click', callbackDelete);
+    btn.addEventListener('click', callbackAdd);
+  }
+}
+
